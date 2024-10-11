@@ -4,8 +4,10 @@ import {Provider} from 'react-redux';
 import {HashRouter} from 'react-router-dom';
 import * as vega from 'vega';
 import * as vegaLite from 'vega-lite';
-import setupMonaco from './utils/monaco';
 
+import setupMonaco from './utils/monaco';
+import {PieLabelTransform} from '../../transforms/pielabels';
+import {CustomLabelTransform} from '../../transforms/customlabel';
 import AppShell from './components/app-shell';
 import configureStore from './store/configure-store';
 
@@ -23,6 +25,9 @@ declare global {
     };
   }
 }
+// @ts-ignore
+vega.transforms['pielabels'] = PieLabelTransform;
+vega.transforms['customlabel'] = CustomLabelTransform;
 
 window.VEGA_DEBUG = window.VEGA_DEBUG || {};
 window.VEGA_DEBUG = {};
